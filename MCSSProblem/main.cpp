@@ -28,7 +28,7 @@ int main(int argc, const char * argv[])
             integerArray[i - 1] = stoi(s1);
         }
         //Now use algorithm to compute the results.
-        int result = MCSS::cubicAlgorithm(integerArray, argc - 1);
+        int result = MCSS::linearAlgorithm(integerArray, argc - 1);
         cout << "The maximum sum of subsequence is: " << result << endl;
     }
     catch(invalid_argument &e)
