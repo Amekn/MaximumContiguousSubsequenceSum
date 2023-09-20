@@ -6,9 +6,24 @@
 //
 
 #include <iostream>
+#include <stdexcept>
+#include <string>
+#include "MCSS.hpp"
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+int main(int argc, const char * argv[])
+{
+    
+    try
+    {
+
+    }
+    catch(out_of_range &e)
+    {
+        cerr << e.what();
+        return -1;
+    }
+    
 }
+
+
