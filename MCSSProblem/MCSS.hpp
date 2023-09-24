@@ -21,5 +21,9 @@ public:
     //The linearAlgorithm uses a structure observation relate to the problem. The clue is that a best
     //sub sequence sum cannot include a negative sequence sum, it is better to not include (essentially means, we could move forwards).
     static int linearAlgorithm(int sequence[], int arrayLength);
+    //Utilising a divide & conquer algorithm. Linear search time in each recursive call, plus (logN + 1 ) numbers of recursive call. The the overall efficiency is N * logN. Although 2 recursion is used for each recursive call, there is no compound interest here (no duplicate computation).
+    static int NlogNAlgorithm(int sequence[], int left, int right);
+    //The driver routine to check if the sequence is empty before recursion.
+    static int NlogNDriver(int sequence[], int arrayLength);
 };
 #endif /* MCSS_hpp */

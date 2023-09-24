@@ -66,3 +66,40 @@ int MCSS::linearAlgorithm(int sequence[], int arrayLength){
     return sum;
 }
 
+int MCSS::NlogNAlgorithm(int sequence[], int left, int right){
+    int leftBoarderSum = 0, rightBoarderSum = 0;
+    int maxLeftBoarderSum = 0, maxRightBoarderSum = 0;
+    if(left==right){
+        return sequence[left] > 0 ? sequence[left] : 0;
+    }
+    int middle = (left + right) / 2;
+    //Compute the sum on the left of the array
+    int maxLeftSum = NlogNAlgorithm(sequence, left, middle);
+    //Compute the sum on the right of the array.
+    int maxRightSum = NlogNAlgorithm(sequence, middle + 1, right);
+    
+    //Compute the sum across the middle boarder.
+    for(int i = middle; i >= left; i--){
+        leftBoarderSum += sequence[i];
+        if(leftBoarderSum > maxLeftBoarderSum){
+            maxLeftBoarderSum = leftBoarderSum;
+        }
+    }
+    
+    for(int i = middle + 1; i <= right; i++){
+        rightBoarderSum += sequence[i];
+        if(rightBoarderSum > maxRightBoarderSum){
+            maxRightBoarderSum = rightBoarderSum;
+        }
+    }
+    
+    //Compare the sums.
+    int maxSum = maxLeftSum > maxRightSum ? maxLeftSum : maxRightSum;
+    maxSum = (maxLeftBoarderSum + maxRightBoarderSum) > maxSum ? maxLeftBoarderSum + maxRightBoarderSum : maxSum;
+    return maxSum;
+}
+
+int MCSS::NlogNDriver(int sequence[], int arrayLength){
+    return arrayLength > 0 ? NlogNAlgorithm(sequence, 0, arrayLength - 1) : 0;
+}
+
